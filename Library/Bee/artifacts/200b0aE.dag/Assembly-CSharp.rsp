@@ -361,11 +361,13 @@
 "Assets/Scripts/UI/EventListener/CardSliderEvent.cs"
 "Assets/Scripts/UI/EventListener/ClickEvent.cs"
 "Assets/Scripts/UI/EventListener/ClickOpenUI.cs"
+"Assets/Scripts/UI/EventListener/ClickPlayMusic.cs"
 "Assets/Scripts/UI/EventListener/HoverPlaySound.cs"
 "Assets/Scripts/UI/EventListener/ImageChangeEvent.cs"
 "Assets/Scripts/UI/GenrateToken.cs"
 "Assets/Scripts/UI/Properties.cs"
 "Assets/Scripts/UI/Resource.cs"
+"Assets/Scripts/UI/ResourceManage.cs"
 -langversion:9.0
 
 /deterministic

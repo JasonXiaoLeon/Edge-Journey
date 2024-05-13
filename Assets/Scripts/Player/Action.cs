@@ -20,9 +20,11 @@ public class Action : MonoBehaviour
     [SerializeField]
     private int capacityOfBag;
     [SerializeField]
+    private int attack;
+    [SerializeField]
     private int[] weaponList;
     [SerializeField]
-    private int attack;
+    private int totalNumber;
     [SerializeField]
     private int diceNumber;
     [SerializeField]
@@ -35,7 +37,7 @@ public class Action : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actionPoint = 5;
+        actionPoint = 8;
         widsomPoint = 3;
         starvationPoint = 3;
         thirtyPoint = 2;
@@ -53,13 +55,9 @@ public class Action : MonoBehaviour
         return actionPoint;
     }
 
-    // 减少 actionPoint 的值
-    public void DecreaseActionPoint()
+    public int GetTotalNumber()
     {
-        if (actionPoint > 0)
-        {
-            actionPoint--;
-        }
+        return totalNumber;
     }
 
     // Getter 方法用于获取 widsomPoint 属性的值
@@ -128,6 +126,60 @@ public class Action : MonoBehaviour
     {
         return PlayDice(min, max) + GetAttack();
     }
+
+    // Action Point property
+    public void SetActionPoint(int value)
+    {
+        actionPoint = value;
+    }
+
+    public void SetTotalNumber(int value)
+    {
+        totalNumber += value;
+    }
+
+    // Wisdom Point property
+    public void SetWisdomPoint(int value)
+    {
+        widsomPoint = value;
+    }
+
+    // Starvation Point property
+    public void SetStarvationPoint(int value)
+    {
+        starvationPoint = value;
+    }
+
+    // Thirty Point property
+    public void SetThirtyPoint(int value)
+    {
+        thirtyPoint = value;
+    }
+
+    // Biochemistry Point property
+    public void SetBiochemistryPoint(int value)
+    {
+        biochemistryPoint = value;
+    }
+
+    // Gold Amount property
+    public void SetGoldAmount(int value)
+    {
+        goldAmount = value;
+    }
+
+    // Capacity of Bag property
+    public void SetCapacityOfBag(int value)
+    {
+        capacityOfBag = value;
+    }
+
+    // Attack property
+    public void SetAttack(int value)
+    {
+        attack = value;
+    }
+
 
     public void SetRest()
     {

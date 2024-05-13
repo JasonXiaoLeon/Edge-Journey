@@ -27,7 +27,8 @@ public class Properties : MonoBehaviour
                                  "Widsom: " + GetWidsomPoint() + "\n" +
                                  "Starvation: " + GetStarvationPoint() + "\n" +
                                  "Thirty: " + GetThirtyPoint() + "\n" +
-                                 "Biochemistry: " + GetBiochemistryPoint();
+                                 "Biochemistry: " + GetBiochemistryPoint() + "\n" +
+                                 "TotalMove: " + GetTotalMove();
         }
     }
 
@@ -95,6 +96,21 @@ public class Properties : MonoBehaviour
         {
             // 返回 actionPoint 的值
             return playerActionInstance.GetBiochemistryPoint();
+        }
+        else
+        {
+            return 0; // 如果 Action 实例不存在，返回默认值
+        }
+    }
+
+    // 获取 actionPoint 的值
+    private int GetTotalMove()
+    {
+        // 检查 Action 实例是否存在
+        if (playerActionInstance != null)
+        {
+            // 返回 actionPoint 的值
+            return playerActionInstance.GetTotalNumber();
         }
         else
         {

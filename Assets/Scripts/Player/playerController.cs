@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -11,13 +11,14 @@ public class playerController : MonoBehaviour
     public Light directionalLight; // Directional Light 引用
     private SoundEffect soundEffect; // SoundEffect 脚本引用
     private Action actionScript; // Action 脚本引用
-
+    private ResourceManage apManage;
     void Start()
     {
         autoGenerateCube = FindObjectOfType<AutoGenerateCube>(); // 在场景中查找并获取AutoGenerateCube的实例
         directionalLight = GameObject.FindObjectOfType<Light>();
         actionScript = GetComponent<Action>(); // 获取挂载在同一物体上的 Action 脚本引用
         soundEffect = GameObject.Find("SoundSystem").GetComponent<SoundEffect>(); // 获取 SoundEffect 组件
+        apManage = GameObject.Find("行动").GetComponent<ResourceManage>();
     }
 
     void Update()
@@ -29,8 +30,8 @@ public class playerController : MonoBehaviour
             if (actionScript.GetActionPoint() > 0 && actionScript.GetBiochemistryPoint() != 0 )
             {
                 // 减少 actionPoint 的值
-                actionScript.DecreaseActionPoint();
-                StartMoving();
+                apManage.ConsumeResource("actionPoint", 1);
+                //StartMoving();
             }
         }
 

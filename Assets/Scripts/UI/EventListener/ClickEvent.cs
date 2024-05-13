@@ -13,12 +13,15 @@ public class ClickEvent : MonoBehaviour
     private int minDiceNumber;
     [SerializeField]
     private int maxDiceNumber;
+    [SerializeField]
+    private ResourceManage apManage;
+
 
     // Start is called before the first frame update
     void Start()
     {
         clickEventListener = gameObject.GetComponent<Button>();
-
+        apManage = GameObject.Find("行动").GetComponent<ResourceManage>();
         minDiceNumber = 1;
         maxDiceNumber = 3;
     }
@@ -36,6 +39,9 @@ public class ClickEvent : MonoBehaviour
 
     public void OnClickMove()
     {
-        UnityEngine.Debug.Log(playerActionInstance.GetMoveSteps(minDiceNumber, maxDiceNumber));
+        int total = playerActionInstance.GetActionPoint();
+        apManage.ConsumeResource("actionPoint", 1);
+        playerActionInstance.SetTotalNumber(playerActionInstance.GetMoveSteps(minDiceNumber, maxDiceNumber));
+        UnityEngine.Debug.Log(playerActionInstance.GetTotalNumber());
     }
 }
