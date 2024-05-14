@@ -9,13 +9,9 @@ public class ClickPlayMusic : MonoBehaviour
     [SerializeField]
     private AudioClip audioClip;
 
-    void Start()
-    {
-        audioSource.clip = audioClip;
-    }
-
     public void OnClickPlayMusic()
     {
+        audioSource.clip = audioClip;
         audioSource.Play();
     }
 }

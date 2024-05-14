@@ -38,17 +38,23 @@ public class ImageChangeEvent : MonoBehaviour
         {
             return;
         }
-
-        // 更新索引，循环显示图片
-        currentIndex = (currentIndex + 1) % images.Length;
-        // 更新显示的图片
-        imageComponent.sprite = images[currentIndex];
-        TakeARest();
-        soundEffect.PlaySound(coinFlip);
+        if (playerActionInstance.GetTotalNumber() != 0)
+        {
+            // 更新索引，循环显示图片
+            currentIndex = (currentIndex + 1) % images.Length;
+            // 更新显示的图片
+            imageComponent.sprite = images[currentIndex];
+            soundEffect.PlaySound(coinFlip);
+        }
     }
 
     public void TakeARest()
     {
-        playerActionInstance.SetRest();
+        if (playerActionInstance.GetTotalNumber() != 0)
+        {
+            playerActionInstance.SetRest();
+            playerActionInstance.SetActionPoint(playerActionInstance.RecoverActionPoint()+ playerActionInstance.GetActionPoint());
+            playerActionInstance.ClearTotalNumber(0);
+        }
     }
 }

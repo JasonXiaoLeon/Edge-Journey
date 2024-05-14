@@ -40,10 +40,13 @@ public class GenrateToken : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            // 实例化新的 Image 组件
-            Image newImage = new GameObject("Image", typeof(Image)).GetComponent<Image>();
-            // 将新的 Image 设置为 parentTransform 的子对象
-            newImage.transform.SetParent(parentTransform);
+            // 实例化新的 GameObject
+            GameObject newGameObject = new GameObject("Image");
+            // 将新的 GameObject 设置为 parentTransform 的子对象
+            newGameObject.transform.SetParent(parentTransform);
+            // 添加 Image 组件
+            Image newImage = newGameObject.AddComponent<Image>();
+
             // 设置新生成的 Image 的位置
             newImage.rectTransform.localPosition = new Vector3(initialX + i * offsetX, 0f, 0f);
             // 将原始 Image 组件的属性复制到新的 Image 上
@@ -51,6 +54,10 @@ public class GenrateToken : MonoBehaviour
             newImage.color = originalImage.color;
             newImage.material = originalImage.material;
             newImage.raycastTarget = originalImage.raycastTarget;
+            //// 添加 Transition 脚本
+            //Transition transition = newGameObject.AddComponent<Transition>();
+            //// 添加 Animator 组件
+            //Animator animator = newGameObject.AddComponent<Animator>();
         }
     }
 }

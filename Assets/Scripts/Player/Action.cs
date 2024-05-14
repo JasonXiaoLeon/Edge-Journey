@@ -26,6 +26,8 @@ public class Action : MonoBehaviour
     [SerializeField]
     private int totalNumber;
     [SerializeField]
+    private int totalDices;
+    [SerializeField]
     private int diceNumber;
     [SerializeField]
     private int minDiceNumber;
@@ -47,6 +49,8 @@ public class Action : MonoBehaviour
         attack = 0;
         weaponList = new int[0];
         isRest = false;
+        maxDiceNumber = 3;
+        totalDices = 8;
     }
 
     // Getter 方法用于获取 actionPoint 属性的值
@@ -58,6 +62,11 @@ public class Action : MonoBehaviour
     public int GetTotalNumber()
     {
         return totalNumber;
+    }
+
+    public int GetTotalDices()
+    {
+        return totalDices;
     }
 
     // Getter 方法用于获取 widsomPoint 属性的值
@@ -130,12 +139,25 @@ public class Action : MonoBehaviour
     // Action Point property
     public void SetActionPoint(int value)
     {
-        actionPoint = value;
+        if (value <= totalDices)
+            actionPoint = value;
+        else
+            actionPoint = totalDices;
     }
 
     public void SetTotalNumber(int value)
     {
         totalNumber += value;
+    }
+
+    public void ClearTotalNumber(int value)
+    {
+        totalNumber = value;
+    }
+
+    public void SetTotalDices(int value)
+    {
+        totalDices = value;
     }
 
     // Wisdom Point property
@@ -189,5 +211,10 @@ public class Action : MonoBehaviour
     public bool GetRest()
     {
         return isRest;
+    }
+
+    public int RecoverActionPoint()
+    {
+        return GetTotalDices()*maxDiceNumber - GetTotalNumber();
     }
 }

@@ -39,9 +39,18 @@ public class ClickEvent : MonoBehaviour
 
     public void OnClickMove()
     {
-        int total = playerActionInstance.GetActionPoint();
-        apManage.ConsumeResource("actionPoint", 1);
-        playerActionInstance.SetTotalNumber(playerActionInstance.GetMoveSteps(minDiceNumber, maxDiceNumber));
-        UnityEngine.Debug.Log(playerActionInstance.GetTotalNumber());
+        if (playerActionInstance.GetActionPoint() > 0)
+        {
+            int total = playerActionInstance.GetActionPoint();
+            apManage.ConsumeResource("actionPoint", 1);
+            playerActionInstance.SetTotalNumber(playerActionInstance.GetMoveSteps(minDiceNumber, maxDiceNumber));
+            UnityEngine.Debug.Log(playerActionInstance.GetTotalNumber());
+
+            ClickPlayMusic playMusicComponent = GetComponent<ClickPlayMusic>();
+            if (playMusicComponent != null)
+            {
+                playMusicComponent.OnClickPlayMusic();
+            }
+        }
     }
 }
