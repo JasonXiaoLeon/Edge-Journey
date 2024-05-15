@@ -145,9 +145,14 @@ public class Action : MonoBehaviour
             actionPoint = totalDices;
     }
 
-    public void SetTotalNumber(int value)
+    public void SetTotalNumberIncrease(int value)
     {
         totalNumber += value;
+    }
+
+    public void SetTotalNumberDecrease(int value)
+    {
+        totalNumber -= value;
     }
 
     public void ClearTotalNumber(int value)

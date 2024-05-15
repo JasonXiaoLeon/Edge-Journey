@@ -43,7 +43,7 @@ public class ClickEvent : MonoBehaviour
         {
             int total = playerActionInstance.GetActionPoint();
             apManage.ConsumeResource("actionPoint", 1);
-            playerActionInstance.SetTotalNumber(playerActionInstance.GetMoveSteps(minDiceNumber, maxDiceNumber));
+            playerActionInstance.SetTotalNumberIncrease(playerActionInstance.GetMoveSteps(minDiceNumber, maxDiceNumber));
             UnityEngine.Debug.Log(playerActionInstance.GetTotalNumber());
 
             ClickPlayMusic playMusicComponent = GetComponent<ClickPlayMusic>();
