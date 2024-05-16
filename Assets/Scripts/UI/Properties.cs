@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // 引入 TextMeshPro 的命名空间
+using TMPro;
 
 public class Properties : MonoBehaviour
 {
     [SerializeField]
-    private Action playerActionInstance; // playerController 实例
-    private TMP_Text textComponent; // TMP_Text 组件
+    private Action playerActionInstance;
+    private TMP_Text textComponent;
 
     // Start is called before the first frame update
     void Start()
@@ -28,93 +28,56 @@ public class Properties : MonoBehaviour
                                  "Starvation: " + GetStarvationPoint() + "\n" +
                                  "Thirty: " + GetThirtyPoint() + "\n" +
                                  "Biochemistry: " + GetBiochemistryPoint() + "\n" +
-                                 "TotalMove: " + GetTotalMove();
+                                 "TotalMove: " + GetTotalMove() + "\n" +
+                                  "TotalMove(U): " + GetRecordTotalNumber() + "\n" +
+                                  "Rest(Hours): " + GetRestHours() + "\n" +
+                                  "Forward: " + GetForward();
         }
     }
 
-    // 获取 actionPoint 的值
+    // Getter methods
     private int GetActionPoint()
     {
-        // 检查 Action 实例是否存在
-        if (playerActionInstance != null)
-        {
-            // 返回 actionPoint 的值
-            return playerActionInstance.GetActionPoint();
-        }
-        else
-        {
-            return 0; // 如果 Action 实例不存在，返回默认值
-        }
+        return playerActionInstance != null ? playerActionInstance.GetActionPoint() : 0;
     }
 
     private int GetWidsomPoint()
     {
-        // 检查 Action 实例是否存在
-        if (playerActionInstance != null)
-        {
-            // 返回 actionPoint 的值
-            return playerActionInstance.GetWidsomPoint();
-        }
-        else
-        {
-            return 0; // 如果 Action 实例不存在，返回默认值
-        }
+        return playerActionInstance != null ? playerActionInstance.GetWidsomPoint() : 0;
     }
 
     private int GetStarvationPoint()
     {
-        // 检查 Action 实例是否存在
-        if (playerActionInstance != null)
-        {
-            // 返回 actionPoint 的值
-            return playerActionInstance.GetStarvationPoint();
-        }
-        else
-        {
-            return 0; // 如果 Action 实例不存在，返回默认值
-        }
+        return playerActionInstance != null ? playerActionInstance.GetStarvationPoint() : 0;
     }
 
     private int GetThirtyPoint()
     {
-        // 检查 Action 实例是否存在
-        if (playerActionInstance != null)
-        {
-            // 返回 actionPoint 的值
-            return playerActionInstance.GetThirtyPoint();
-        }
-        else
-        {
-            return 0; // 如果 Action 实例不存在，返回默认值
-        }
+        return playerActionInstance != null ? playerActionInstance.GetThirtyPoint() : 0;
     }
 
     private int GetBiochemistryPoint()
     {
-        // 检查 Action 实例是否存在
-        if (playerActionInstance != null)
-        {
-            // 返回 actionPoint 的值
-            return playerActionInstance.GetBiochemistryPoint();
-        }
-        else
-        {
-            return 0; // 如果 Action 实例不存在，返回默认值
-        }
+        return playerActionInstance != null ? playerActionInstance.GetBiochemistryPoint() : 0;
     }
 
-    // 获取 actionPoint 的值
     private int GetTotalMove()
     {
-        // 检查 Action 实例是否存在
-        if (playerActionInstance != null)
-        {
-            // 返回 actionPoint 的值
-            return playerActionInstance.GetTotalNumber();
-        }
-        else
-        {
-            return 0; // 如果 Action 实例不存在，返回默认值
-        }
+        return playerActionInstance != null ? playerActionInstance.GetTotalNumber() : 0;
+    }
+
+    private int GetRecordTotalNumber()
+    {
+        return playerActionInstance != null ? playerActionInstance.GetRecordTotalNumber() : 0;
+    }
+
+    private int GetRestHours()
+    {
+        return playerActionInstance != null ? playerActionInstance.RecoverActionPoint() : 0;
+    }
+
+    private int GetForward()
+    {
+        return playerActionInstance != null ? playerActionInstance.GetMoveAmount() : 0;
     }
 }

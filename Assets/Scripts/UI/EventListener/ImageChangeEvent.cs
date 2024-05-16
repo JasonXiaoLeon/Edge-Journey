@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +13,11 @@ public class ImageChangeEvent : MonoBehaviour
     private AudioClip coinFlip;
     [SerializeField]
     private SoundEffect soundEffect; // 添加声音效果组件
+    [SerializeField]
+    private ClickEvent clickEvent;
+    [SerializeField]
+    private ActionUI actionUI;
+    private int leftValue;
 
     // 在 Start 方法中获取 Image 组件的引用
     void Start()
@@ -38,7 +42,7 @@ public class ImageChangeEvent : MonoBehaviour
         {
             return;
         }
-        if (playerActionInstance.GetTotalNumber() != 0)
+        if (playerActionInstance.GetRecordTotalNumber() != 0)
         {
             // 更新索引，循环显示图片
             currentIndex = (currentIndex + 1) % images.Length;
@@ -50,11 +54,21 @@ public class ImageChangeEvent : MonoBehaviour
 
     public void TakeARest()
     {
-        if (playerActionInstance.GetTotalNumber() != 0)
+        if (playerActionInstance.GetRecordTotalNumber() != 0)
         {
             playerActionInstance.SetRest();
-            playerActionInstance.SetActionPoint(playerActionInstance.RecoverActionPoint()+ playerActionInstance.GetActionPoint());
+            leftValue = playerActionInstance.RecoverActionPoint();
+            playerActionInstance.SetActionPoint(leftValue);
             playerActionInstance.ClearTotalNumber(0);
+            playerActionInstance.SetRecoverActionPoint();
+            playerActionInstance.SetMoveAmount(0);
+            clickEvent.SetIsDone(false);
+            actionUI.GetClickedButtons().Clear();
         }
+    }
+
+    public int GetRestHours()
+    {
+        return playerActionInstance.GetRestHours();
     }
 }

@@ -120,4 +120,29 @@ public class ResourceManage : MonoBehaviour
             children[i].gameObject.SetActive(true);
         }
     }
+
+    public void ShowResourceBasedOnActionPoint()
+    {
+        if (action == null)
+        {
+            return;
+        }
+        int actionPoint = action.GetActionPoint();
+
+        // 获取所有的 Image 组件
+        var children = transform.GetComponentsInChildren<Image>(true);
+
+        // 根据 actionPoint 的值决定激活对应数量的 Image 组件
+        for (int i = 0; i < Mathf.Min(actionPoint, children.Length); i++)
+        {
+            children[i].gameObject.SetActive(true);
+        }
+
+        // 将多余的 Image 组件禁用
+        for (int i = actionPoint; i < children.Length; i++)
+        {
+            children[i].gameObject.SetActive(false);
+        }
+    }
+
 }

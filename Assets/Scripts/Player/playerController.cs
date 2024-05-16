@@ -12,6 +12,8 @@ public class playerController : MonoBehaviour
     private SoundEffect soundEffect; // SoundEffect 脚本引用
     private Action actionScript; // Action 脚本引用
     private ResourceManage apManage;
+    private ActionUI actionUI;
+
     void Start()
     {
         autoGenerateCube = FindObjectOfType<AutoGenerateCube>(); // 在场景中查找并获取AutoGenerateCube的实例
@@ -19,6 +21,7 @@ public class playerController : MonoBehaviour
         actionScript = GetComponent<Action>(); // 获取挂载在同一物体上的 Action 脚本引用
         soundEffect = GameObject.Find("SoundSystem").GetComponent<SoundEffect>(); // 获取 SoundEffect 组件
         apManage = GameObject.Find("行动").GetComponent<ResourceManage>();
+        actionUI = GameObject.Find("行动阶段").GetComponent<ActionUI>();
     }
 
     void Update()
@@ -27,11 +30,14 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // 检查 actionPoint 是否大于 0
-            if (actionScript.GetActionPoint() > 0 && actionScript.GetBiochemistryPoint() != 0 )
+            if (actionScript.GetBiochemistryPoint() != 0 )
             {
                 // 减少 actionPoint 的值
-                apManage.ConsumeResource("actionPoint", 1);
-                //StartMoving();
+                if (actionScript.GetMoveAmount() >0)
+                {
+                    actionScript.SetMoveAmountDecreaseByOne();
+                    StartMoving();
+                } 
             }
         }
 
@@ -105,4 +111,30 @@ public class playerController : MonoBehaviour
         // 将 Directional Light 旋转到相应的角度
         directionalLight.transform.rotation = Quaternion.Euler(rotationAngle, 0f, 0f);
     }
+
+    public void Rest()
+    {
+        // 获取休息时间对应的小时数
+        int restHours = actionScript.GetRestHours();
+
+        // 计算新的目标位置索引
+        int newDestinationIndex = currentDestinationIndex + restHours;
+
+        // 如果新的目标位置索引超过了目标位置列表的范围，则将索引限制在列表末尾
+        if (newDestinationIndex >= autoGenerateCube.RoadPositions.Count)
+        {
+            newDestinationIndex = autoGenerateCube.RoadPositions.Count - 1;
+        }
+
+        // 更新当前目标位置索引
+        currentDestinationIndex = newDestinationIndex;
+
+        // 获取新的目标位置
+        Vector3 newPosition = autoGenerateCube.RoadPositions[currentDestinationIndex];
+
+        // 将玩家移动到新的目标位置，并调整 y 坐标
+        transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z);
+    }
+
+
 }

@@ -16,7 +16,8 @@ public class Date : MonoBehaviour
     private Vector2 pivotOffset; // 旋转轴相对于图片中心的偏移量
     [SerializeField]
     private int currentDay; // 旋转轴相对于图片中心的偏移量
-
+    [SerializeField]
+    private ImageChangeEvent imagechange;
     void Start()
     {
         // 获取 TMP_Text 组件
@@ -37,7 +38,6 @@ public class Date : MonoBehaviour
             daysUI.text = "Day: " + currentDay + GetDaySuffix(currentDay);
         }
 
-        // 检查 playerController 实例是否存在
         if (playerControllerInstance != null)
         {
             // 获取 currentDestinationIndex 的值
@@ -78,5 +78,20 @@ public class Date : MonoBehaviour
         }
     }
 
+    public void ChangeByRest()
+    {
+        int restHours = imagechange.GetRestHours();
+        if (restHours != 0)
+        {
+            float hourAngleChange = restHours * -30f; //
+            hourHandImage.rectTransform.Rotate(0f, 0f, hourAngleChange);
+            playerControllerInstance.Rest();
+        }
+    }
+
+    public int getDay()
+    {
+        return currentDay;
+    }
 }
 

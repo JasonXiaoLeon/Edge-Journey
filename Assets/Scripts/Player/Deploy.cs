@@ -14,7 +14,6 @@ public class Deploy : MonoBehaviour
 
     public void Checked()
     {
-        isAllDone = true;
         if (isAllDone)
         {
             deploymentUI.SetActive(false);
@@ -28,5 +27,10 @@ public class Deploy : MonoBehaviour
     public bool GetIsAllDone()
     {
         return isAllDone;
+    }
+
+    public void SetIsAllDone()
+    {
+        isAllDone=true;
     }
 }

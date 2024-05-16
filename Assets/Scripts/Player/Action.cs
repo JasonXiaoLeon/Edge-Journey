@@ -8,6 +8,8 @@ public class Action : MonoBehaviour
     [SerializeField]
     private int actionPoint;
     [SerializeField]
+    private int moveAmount;
+    [SerializeField]
     private int widsomPoint;
     [SerializeField]
     private int starvationPoint;
@@ -25,6 +27,7 @@ public class Action : MonoBehaviour
     private int[] weaponList;
     [SerializeField]
     private int totalNumber;
+    private int recordTotalNumber;
     [SerializeField]
     private int totalDices;
     [SerializeField]
@@ -35,10 +38,12 @@ public class Action : MonoBehaviour
     private int maxDiceNumber;
     [SerializeField]
     private bool isRest;
-
+    [SerializeField]
+    private int restHours;
     // Start is called before the first frame update
     void Start()
     {
+        restHours = 0;
         actionPoint = 8;
         widsomPoint = 3;
         starvationPoint = 3;
@@ -59,9 +64,24 @@ public class Action : MonoBehaviour
         return actionPoint;
     }
 
+    public int GetRestHours()
+    {
+        return restHours;
+    }
+
+    public int GetMoveAmount()
+    {
+        return moveAmount;
+    }
+
     public int GetTotalNumber()
     {
         return totalNumber;
+    }
+
+    public int GetRecordTotalNumber()
+    {
+        return recordTotalNumber;
     }
 
     public int GetTotalDices()
@@ -140,9 +160,23 @@ public class Action : MonoBehaviour
     public void SetActionPoint(int value)
     {
         if (value <= totalDices)
+        {
             actionPoint = value;
+        }
+
         else
             actionPoint = totalDices;
+        
+    }
+
+    public void SetMoveAmount(int value)
+    {
+        moveAmount = value;
+    }
+
+    public void SetMoveAmountDecreaseByOne()
+    {
+        moveAmount -= 1;
     }
 
     public void SetTotalNumberIncrease(int value)
@@ -153,6 +187,11 @@ public class Action : MonoBehaviour
     public void SetTotalNumberDecrease(int value)
     {
         totalNumber -= value;
+    }
+
+    public void SetRecordTotalNumber()
+    {
+        recordTotalNumber = totalNumber;
     }
 
     public void ClearTotalNumber(int value)
@@ -220,6 +259,18 @@ public class Action : MonoBehaviour
 
     public int RecoverActionPoint()
     {
-        return GetTotalDices()*maxDiceNumber - GetTotalNumber();
+        if (GetRecordTotalNumber() == 0)
+            restHours = 0;
+        else
+        {
+            restHours = GetTotalDices() * maxDiceNumber - GetRecordTotalNumber();
+            restHours = Mathf.Min(restHours, 8);
+        }
+        return restHours;
+    }
+
+    public void SetRecoverActionPoint()
+    {
+        SetRecordTotalNumber();
     }
 }

@@ -353,6 +353,7 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Animation/Transition.cs"
 "Assets/Scripts/AutoRender/AutoGenerateCube.cs"
+"Assets/Scripts/AutoRender/RandomGenerateEvent.cs"
 "Assets/Scripts/AutoRender/TextOnCube.cs"
 "Assets/Scripts/Music Effect/BgEffect.cs"
 "Assets/Scripts/Music Effect/SoundEffect.cs"
@@ -373,6 +374,7 @@
 "Assets/Scripts/UI/Properties.cs"
 "Assets/Scripts/UI/Resource.cs"
 "Assets/Scripts/UI/ResourceManage.cs"
+"Assets/Scripts/UI/Setting/InputControl.cs"
 -langversion:9.0
 
 /deterministic

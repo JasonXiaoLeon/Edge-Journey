@@ -15,11 +15,14 @@ public class ClickEvent : MonoBehaviour
     private int maxDiceNumber;
     [SerializeField]
     private ResourceManage apManage;
-
+    [SerializeField]
+    private ActionUI actionUI;
+    private bool isdone;
 
     // Start is called before the first frame update
     void Start()
     {
+        isdone = false;
         clickEventListener = gameObject.GetComponent<Button>();
         apManage = GameObject.Find("行动").GetComponent<ResourceManage>();
         minDiceNumber = 1;
@@ -29,12 +32,15 @@ public class ClickEvent : MonoBehaviour
     void Update()
     {
         playerActionInstance = GameObject.Find("Player(Clone)").GetComponent<Action>();
-
+        if (playerActionInstance.GetActionPoint() == 0 && !isdone)
+        {
+            isdone = true;
+            playerActionInstance.SetRecordTotalNumber();
+        }
     }
 
     public void OnClickAttack()
     {
-        UnityEngine.Debug.Log(playerActionInstance.GetDamageCalculation(minDiceNumber, maxDiceNumber));
     }
 
     public void OnClickMove()
@@ -44,13 +50,17 @@ public class ClickEvent : MonoBehaviour
             int total = playerActionInstance.GetActionPoint();
             apManage.ConsumeResource("actionPoint", 1);
             playerActionInstance.SetTotalNumberIncrease(playerActionInstance.GetMoveSteps(minDiceNumber, maxDiceNumber));
-            UnityEngine.Debug.Log(playerActionInstance.GetTotalNumber());
-
+            actionUI.SetIsFinishTrue();
             ClickPlayMusic playMusicComponent = GetComponent<ClickPlayMusic>();
             if (playMusicComponent != null)
             {
                 playMusicComponent.OnClickPlayMusic();
             }
         }
+    }
+
+    public void SetIsDone(bool value)
+    {
+        isdone = value;
     }
 }
