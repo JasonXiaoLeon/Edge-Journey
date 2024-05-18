@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 132228015530073981}
   - component: {fileID: 7118223892641531492}
   - component: {fileID: 9000660495022533257}
+  - component: {fileID: 5915724878537325322}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -127,10 +128,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPoint: 0
+  moveAmount: 0
   widsomPoint: 0
   starvationPoint: 0
   thirtyPoint: 0
   biochemistryPoint: 0
+  goldAmount: 0
+  capacityOfBag: 0
+  attack: 0
+  weaponList: 
+  totalNumber: 0
+  totalDices: 0
+  diceNumber: 0
+  minDiceNumber: 0
+  maxDiceNumber: 0
+  isRest: 0
+  restHours: 0
+--- !u!114 &5915724878537325322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395460516392737063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b251d1f77794265856abba74fbabce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4019332336427451716
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,14 +181,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4019332336427451716}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 6, z: -6}
+  m_LocalRotation: {x: 0.11829687, y: 0.41900265, z: -0.05516273, w: 0.8985542}
+  m_LocalPosition: {x: -8.300033, y: 3.4999876, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7338237399070637124}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 50, z: 0}
 --- !u!20 &970988272671032766
 Camera:
   m_ObjectHideFlags: 0

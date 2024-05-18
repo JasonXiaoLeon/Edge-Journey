@@ -31,7 +31,8 @@ public class Properties : MonoBehaviour
                                  "TotalMove: " + GetTotalMove() + "\n" +
                                   "TotalMove(U): " + GetRecordTotalNumber() + "\n" +
                                   "Rest(Hours): " + GetRestHours() + "\n" +
-                                  "Forward: " + GetForward();
+                                  "Forward: " + GetForward() + "\n" +
+                                  "Gold: " + GetGoldAmount();
         }
     }
 
@@ -79,5 +80,10 @@ public class Properties : MonoBehaviour
     private int GetForward()
     {
         return playerActionInstance != null ? playerActionInstance.GetMoveAmount() : 0;
+    }
+
+    private int GetGoldAmount()
+    {
+        return playerActionInstance != null ? playerActionInstance.GetGoldAmount() : 0;
     }
 }

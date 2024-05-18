@@ -12,7 +12,8 @@ public class GetTextType : MonoBehaviour
     [SerializeField]
     private AutoGenerateCube autoGenerateCubeScript;
     private string roadPrefabType;
-
+    [SerializeField]
+    private bool showNextType;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,29 @@ public class GetTextType : MonoBehaviour
     void Update()
     {
         playerTransform = GameObject.Find("Player(Clone)").transform;
+        if(!showNextType)
+            ShowCurrent();  
+    }
 
-        roadPrefabType = autoGenerateCubeScript.GetPlayerCurrentRoadPrefabType(playerTransform);
-        textMeshPro.text = "Current Type: " + roadPrefabType;
+    public void ShowCurrent()
+    {
+        string roadPrefabType = autoGenerateCubeScript.GetPlayerRoadPrefabType(playerTransform, showNextType);
+        textMeshPro.text = "Current: " + roadPrefabType;
+    }
+
+    public string GetCurrent()
+    {
+        return roadPrefabType = autoGenerateCubeScript.GetPlayerRoadPrefabType(playerTransform, showNextType);
+    }
+
+    public void ShowNext()
+    {
+        string roadPrefabType = autoGenerateCubeScript.GetPlayerRoadPrefabType(playerTransform, showNextType);
+        textMeshPro.text = "Next: " + roadPrefabType;
+    }
+
+    public void SetEmptyContent()
+    {
+        textMeshPro.text = "";
     }
 }

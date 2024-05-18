@@ -12,6 +12,7 @@
 -a="/Users/jason/Edge Journey/Library/PlayerScriptAssemblies/Unity.VisualScripting.Core.dll"
 -a="/Users/jason/Edge Journey/Library/PlayerScriptAssemblies/Unity.Services.Core.Analytics.dll"
 -a="/Users/jason/Edge Journey/Library/PlayerScriptAssemblies/Unity.Services.Core.Registration.dll"
+-a="/Users/jason/Edge Journey/Library/PlayerScriptAssemblies/Unity.Postprocessing.Runtime.dll"
 -a="/Users/jason/Edge Journey/Library/PlayerScriptAssemblies/Unity.Services.Core.Environments.dll"
 -a="/Users/jason/Edge Journey/Library/PlayerScriptAssemblies/Unity.Services.Core.Scheduler.dll"
 -a="/Users/jason/Edge Journey/Library/PlayerScriptAssemblies/Unity.Services.Core.Environments.Internal.dll"

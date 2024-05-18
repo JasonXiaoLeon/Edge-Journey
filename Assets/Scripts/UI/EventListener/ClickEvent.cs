@@ -50,7 +50,6 @@ public class ClickEvent : MonoBehaviour
             int total = playerActionInstance.GetActionPoint();
             apManage.ConsumeResource("actionPoint", 1);
             playerActionInstance.SetTotalNumberIncrease(playerActionInstance.GetMoveSteps(minDiceNumber, maxDiceNumber));
-            actionUI.SetIsFinishTrue();
             ClickPlayMusic playMusicComponent = GetComponent<ClickPlayMusic>();
             if (playMusicComponent != null)
             {

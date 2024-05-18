@@ -26,47 +26,31 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
-        // 当按下空格键时，开始移动
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // 检查 actionPoint 是否大于 0
-            if (actionScript.GetBiochemistryPoint() != 0 )
-            {
-                // 减少 actionPoint 的值
-                if (actionScript.GetMoveAmount() >0)
-                {
-                    actionScript.SetMoveAmountDecreaseByOne();
-                    StartMoving();
-                } 
-            }
-        }
-
         // 如果正在移动，执行移动逻辑
+
         if (isMoving)
         {
             MoveToDestination();
         }
-        //else
-        //{
-        //    // 当移动停止时停止音乐播放
-        //    soundEffect.StopSound();
-        //}
-
         // 更新 Directional Light 的旋转
         RotateDirectionalLight();
     }
 
     // 开始移动到下一个目标位置
-    void StartMoving()
+    public void StartMoving()
     {
         if (actionScript.GetBiochemistryPoint() <= 0)
+        {
+            return;
+        }
+        if (actionScript.GetTotalNumber() <= 0)
         {
             return;
         }
         // 如果还有下一个目标位置
         if (currentDestinationIndex < autoGenerateCube.RoadPositions.Count - 1)
         {
-            currentDestination = autoGenerateCube.RoadPositions[currentDestinationIndex+1];
+            currentDestination = autoGenerateCube.RoadPositions[currentDestinationIndex + 1];
             currentDestination.y = 1; // 将 Y 坐标设置为 1
             isMoving = true;
 
@@ -76,7 +60,7 @@ public class playerController : MonoBehaviour
     }
 
     // 移动到目标位置
-    void MoveToDestination()
+    public void MoveToDestination()
     {
         // 计算移动方向和距离
         Vector3 moveDirection = (currentDestination - transform.position).normalized; // 将 Vector3 改为 UnityEngine.Vector3
@@ -135,6 +119,4 @@ public class playerController : MonoBehaviour
         // 将玩家移动到新的目标位置，并调整 y 坐标
         transform.position = new Vector3(newPosition.x, newPosition.y + 1f, newPosition.z);
     }
-
-
 }
